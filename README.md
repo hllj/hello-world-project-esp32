@@ -173,7 +173,7 @@ int chooseLED(float y) {
 }
 ```
 
-Now for each loop(), we can inference a y_val from x_val with our model.
+Now for each loop(), we can have an inference of a y_val from x_val with our model, and then control our LEDs to blink in a specific amount of time.
 
 ```c
 for(int i = 0; i < 6; i++) {

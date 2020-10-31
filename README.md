@@ -75,3 +75,7 @@ I suggest you to see an example for training a sinusoid model and convert it usi
 Get your model.cc that you have from the previous step that we have convert a quantized model. Rename it into sine_model_data.cc, and paste it in **main** folder.
 
 ## Create a circuit board for stimulator a harmonic motion with LEDs
+
+# Result
+
+[![Watch the video](https://img.youtube.com/vi/6RySA9YDytg/maxresdefault.jpg)](https://youtu.be/6RySA9YDytg)

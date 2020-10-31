@@ -1,0 +1,20 @@
+{
+    "project_name":       "bootloader",
+    "project_path":       "/home/vanhop/esp/esp-idf/components/bootloader/subproject",
+    "build_dir":          "/home/vanhop/AIOT/tensorflow/tensorflow/lite/micro/tools/make/gen/esp_xtensa-esp32/prj/hello_world/esp-idf/build/bootloader",
+    "config_file":        "/home/vanhop/AIOT/tensorflow/tensorflow/lite/micro/tools/make/gen/esp_xtensa-esp32/prj/hello_world/esp-idf/sdkconfig",
+    "config_defaults":    "",
+    "app_elf":            "bootloader.elf",
+    "app_bin":            "bootloader.bin",
+    "git_revision":       "v4.3-dev-1561-g357a27760",
+    "target":             "esp32",
+    "phy_data_partition": "",
+    "monitor_baud" :      "115200",
+    "monitor_toolprefix": "xtensa-esp32-elf-",
+    "config_environment" : {
+        "COMPONENT_KCONFIGS" : "/home/vanhop/esp/esp-idf/components/efuse/Kconfig;/home/vanhop/esp/esp-idf/components/esp32/Kconfig;/home/vanhop/esp/esp-idf/components/esp_common/Kconfig;/home/vanhop/esp/esp-idf/components/log/Kconfig;/home/vanhop/esp/esp-idf/components/spi_flash/Kconfig",
+        "COMPONENT_KCONFIGS_PROJBUILD" : "/home/vanhop/esp/esp-idf/components/bootloader/Kconfig.projbuild;/home/vanhop/esp/esp-idf/components/esptool_py/Kconfig.projbuild;/home/vanhop/esp/esp-idf/components/partition_table/Kconfig.projbuild"
+    },
+    "build_components" : [ "bootloader", "bootloader_support", "efuse", "esp32", "esp_common", "esp_rom", "esptool_py", "hal", "log", "main", "micro-ecc", "partition_table", "soc", "spi_flash", "xtensa", "" ],
+    "build_component_paths" : [ "/home/vanhop/esp/esp-idf/components/bootloader", "/home/vanhop/esp/esp-idf/components/bootloader_support", "/home/vanhop/esp/esp-idf/components/efuse", "/home/vanhop/esp/esp-idf/components/esp32", "/home/vanhop/esp/esp-idf/components/esp_common", "/home/vanhop/esp/esp-idf/components/esp_rom", "/home/vanhop/esp/esp-idf/components/esptool_py", "/home/vanhop/esp/esp-idf/components/hal", "/home/vanhop/esp/esp-idf/components/log", "/home/vanhop/esp/esp-idf/components/bootloader/subproject/main", "/home/vanhop/esp/esp-idf/components/bootloader/subproject/components/micro-ecc", "/home/vanhop/esp/esp-idf/components/partition_table", "/home/vanhop/esp/esp-idf/components/soc", "/home/vanhop/esp/esp-idf/components/spi_flash", "/home/vanhop/esp/esp-idf/components/xtensa", "" ]
+}

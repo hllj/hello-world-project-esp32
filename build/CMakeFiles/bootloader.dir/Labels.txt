@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+/home/vanhop/AIOT/tensorflow/tensorflow/lite/micro/tools/make/gen/esp_xtensa-esp32/prj/hello_world/esp-idf/build/CMakeFiles/bootloader
+/home/vanhop/AIOT/tensorflow/tensorflow/lite/micro/tools/make/gen/esp_xtensa-esp32/prj/hello_world/esp-idf/build/CMakeFiles/bootloader.rule
+/home/vanhop/AIOT/tensorflow/tensorflow/lite/micro/tools/make/gen/esp_xtensa-esp32/prj/hello_world/esp-idf/build/CMakeFiles/bootloader-complete.rule
+/home/vanhop/AIOT/tensorflow/tensorflow/lite/micro/tools/make/gen/esp_xtensa-esp32/prj/hello_world/esp-idf/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+/home/vanhop/AIOT/tensorflow/tensorflow/lite/micro/tools/make/gen/esp_xtensa-esp32/prj/hello_world/esp-idf/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+/home/vanhop/AIOT/tensorflow/tensorflow/lite/micro/tools/make/gen/esp_xtensa-esp32/prj/hello_world/esp-idf/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+/home/vanhop/AIOT/tensorflow/tensorflow/lite/micro/tools/make/gen/esp_xtensa-esp32/prj/hello_world/esp-idf/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule
+/home/vanhop/AIOT/tensorflow/tensorflow/lite/micro/tools/make/gen/esp_xtensa-esp32/prj/hello_world/esp-idf/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+/home/vanhop/AIOT/tensorflow/tensorflow/lite/micro/tools/make/gen/esp_xtensa-esp32/prj/hello_world/esp-idf/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+/home/vanhop/AIOT/tensorflow/tensorflow/lite/micro/tools/make/gen/esp_xtensa-esp32/prj/hello_world/esp-idf/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule

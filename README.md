@@ -8,6 +8,7 @@ I follow the instruction in tensorflow guideline to create this project (includi
 
 ```
 git clone https://github.com/tensorflow/tensorflow.git
+cd tensorflow
 ```
 
 Switch to version 2.2.0 which is more stable for this project than newest versions.
@@ -71,6 +72,6 @@ I suggest you to see an example for training a sinusoid model and convert it usi
 
 ## Import your model into example project
 
-Get your model.cc that you have from the previous step. Rename it into sine_model_data.cc, and paste it in **main** folder.
+Get your model.cc that you have from the previous step that we have convert a quantized model. Rename it into sine_model_data.cc, and paste it in **main** folder.
 
 ## Create a circuit board for stimulator a harmonic motion with LEDs

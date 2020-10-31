@@ -74,7 +74,119 @@ I suggest you to see an example for training a sinusoid model and convert it usi
 
 Get your model.cc that you have from the previous step that we have convert a quantized model. Rename it into sine_model_data.cc, and paste it in **main** folder.
 
-## Create a circuit board for stimulator a harmonic motion with LEDs
+## Control the LED
+
+In this project we would like to deploy our model on ESP32 Board and stimulate the harmonic motion. So I have add some basic logic handlers and control our LED through driver/gpio.h.
+
+In main_function.cc, we have 2 majors change to setup GPIOs and control LEDs.
+
+### Setup GPIOs
+
+Include some libraries for GPIO and setup some GPIO that we need to use later.
+
+```c
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "driver/gpio.h"
+
+gpio_num_t pinArray[6] = { GPIO_NUM_0, GPIO_NUM_4, GPIO_NUM_16, GPIO_NUM_17, GPIO_NUM_5, GPIO_NUM_18 };
+
+void setupGPIO() {
+  gpio_config_t gpioConfig;
+  gpioConfig.pin_bit_mask = 1;
+  for (int i = 0; i < 6; i++) {
+    gpioConfig.pin_bit_mask |= (1 << pinArray[i]);
+  }
+
+  gpioConfig.mode = GPIO_MODE_OUTPUT;
+  gpioConfig.pull_up_en = GPIO_PULLUP_DISABLE;
+  gpioConfig.pull_down_en = GPIO_PULLDOWN_DISABLE;
+  gpioConfig.intr_type = GPIO_INTR_DISABLE;
+  gpio_config(&gpioConfig);
+}
+```
+
+Load our models with TF Lite (in setup()).
+
+```c
+static tflite::MicroErrorReporter micro_error_reporter;
+error_reporter = &micro_error_reporter;
+
+model = tflite::GetModel(g_sine_model_data);
+if (model->version() != TFLITE_SCHEMA_VERSION) {
+  TF_LITE_REPORT_ERROR(error_reporter,
+                         "Model provided is schema version %d not equal "
+                         "to supported version %d.",
+                         model->version(), TFLITE_SCHEMA_VERSION);
+    return;
+}
+
+// This pulls in all the operation implementations we need.
+// NOLINTNEXTLINE(runtime-global-variables)
+static tflite::ops::micro::AllOpsResolver resolver;
+
+// Build an interpreter to run the model with.
+static tflite::MicroInterpreter static_interpreter(
+      model, resolver, tensor_arena, kTensorArenaSize, error_reporter);
+interpreter = &static_interpreter;
+
+// Allocate memory from the tensor_arena for the model's tensors.
+TfLiteStatus allocate_status = interpreter->AllocateTensors();
+if (allocate_status != kTfLiteOk) {
+  TF_LITE_REPORT_ERROR(error_reporter, "AllocateTensors() failed");
+  return;
+}
+
+// Obtain pointers to the model's input and output tensors.
+input = interpreter->input(0);
+output = interpreter->output(0);
+```
+
+Basic input, output for inference.
+
+```c
+input->data.f[0] = x_val;
+
+// Run inference, and report any error
+TfLiteStatus invoke_status = interpreter->Invoke();
+if (invoke_status != kTfLiteOk) {
+  TF_LITE_REPORT_ERROR(error_reporter, "Invoke failed on x_val: %f\n",
+                         static_cast<double>(x_val));
+  return;
+}
+
+// Read the predicted y value from the model's output tensor
+float y_val = output->data.f[0];
+```
+
+Create function to choose LED after running inference with our model, in this circuit board, I use 6 LEDs so I need to split into 6 equal segments in range [-1. 1]
+
+```c
+int chooseLED(float y) {
+  if (-1 <= y && y < -0.66) return 0;
+  if (-0.66 <= y && y < -0.33) return 1;
+  if (-0.33 <= y && y < 0) return 2;
+  if (0 <= y && y < 0.33) return 3;
+  if (0.33 <= y && y < 0.66) return 4;
+  if (0.66 <= y && y <= 1) return 5;
+  return -1;
+}
+```
+
+Now for each loop(), we can inference a y_val from x_val with our model.
+
+```c
+for(int i = 0; i < 6; i++) {
+    gpio_set_level(pinArray[i], 0);
+}
+int iLED = chooseLED(y_val);
+printf("Choose LED: %d\n", iLED);
+gpio_set_level(pinArray[iLED], 1);
+vTaskDelay((1000 / SEGMENT) / portTICK_PERIOD_MS);
+gpio_set_level(pinArray[iLED], 0);
+```
+
+# Create a circuit board for stimulator a harmonic motion with LEDs
 
 # Result
 

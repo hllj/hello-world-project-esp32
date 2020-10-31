@@ -29,10 +29,12 @@ limitations under the License.
 #include "freertos/task.h"
 #include "driver/gpio.h"
 
+#define SEGMENT 30
+
 gpio_num_t pinArray[6] = { GPIO_NUM_0, GPIO_NUM_4, GPIO_NUM_16, GPIO_NUM_17, GPIO_NUM_5, GPIO_NUM_18 };
 float x_val = M_PI / 2;
 float y_val;
-float dt = 2 * M_PI / 50;
+float dt = 2 * M_PI / SEGMENT;
 
 // Globals, used for compatibility with Arduino-style sketches.
 namespace {
@@ -143,7 +145,7 @@ void loop() {
   int iLED = chooseLED(y_val);
   printf("Choose LED: %d\n", iLED);
   gpio_set_level(pinArray[iLED], 1);
-  vTaskDelay((1000 / 50) / portTICK_PERIOD_MS);
+  vTaskDelay((1000 / SEGMENT) / portTICK_PERIOD_MS);
   gpio_set_level(pinArray[iLED], 0);
 
   // Increment the inference_counter, and reset it if we have reached

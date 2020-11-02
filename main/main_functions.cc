@@ -53,7 +53,7 @@ uint8_t tensor_arena[kTensorArenaSize];
 
 void setupGPIO() {
   gpio_config_t gpioConfig;
-  gpioConfig.pin_bit_mask = 1;
+  gpioConfig.pin_bit_mask = 0;
   for (int i = 0; i < 6; i++) {
     gpioConfig.pin_bit_mask |= (1 << pinArray[i]);
   }

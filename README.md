@@ -93,7 +93,7 @@ gpio_num_t pinArray[6] = { GPIO_NUM_0, GPIO_NUM_4, GPIO_NUM_16, GPIO_NUM_17, GPI
 
 void setupGPIO() {
   gpio_config_t gpioConfig;
-  gpioConfig.pin_bit_mask = 1;
+  gpioConfig.pin_bit_mask = 0;
   for (int i = 0; i < 6; i++) {
     gpioConfig.pin_bit_mask |= (1 << pinArray[i]);
   }
@@ -187,6 +187,10 @@ gpio_set_level(pinArray[iLED], 0);
 ```
 
 # Create a circuit board for stimulator a harmonic motion with LEDs
+
+Here is an example of a circuit board that I designed for this project in tinkercad.com with Arduino UNO.
+
+![circuit](/images/circuit.png)
 
 # Result
 
